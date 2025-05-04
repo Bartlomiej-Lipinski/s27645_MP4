@@ -41,6 +41,9 @@ public class Mechanik {
     }
 
     public void setWiek(int wiek) {
+        if (this.wiek < wiek){
+            throw new IllegalArgumentException("Wiek nie może wzrosnąć");
+        }
         if (wiek < 18 || wiek > 65) {
             throw new IllegalArgumentException("Wiek musi być w przedziale 18-65");
         }
