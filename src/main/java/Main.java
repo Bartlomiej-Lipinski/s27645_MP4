@@ -1,3 +1,7 @@
+import Xor.Mechanik;
+import Xor.Projekt;
+import Xor.Warsztat;
+
 public class Main {
     public static void main(String[] args) {
         // Create instances of Warsztat and Projekt
@@ -9,6 +13,8 @@ public class Main {
 
         // Set the warsztat and projekt
         mechanik.setWarsztat(warsztat);
+        System.out.println("Mechanik przypisany do warsztatu: " + mechanik.getWarsztat().getNazwa());
+        System.out.println(warsztat.get);
         mechanik.setProjekt(projekt);
 
         // Print the names of warsztat and projekt

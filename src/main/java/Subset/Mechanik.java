@@ -51,14 +51,20 @@ public class Mechanik {
             throw new IllegalArgumentException(message);
         }
     }
-    public void addNaprawa(Naprawa naprawa, boolean biezaca) {
+    public void addNaprawa(Naprawa naprawa) {
         if (naprawa == null) {
             throw new IllegalArgumentException("Naprawa nie może być null");
         }
         wszystkieNaprawy.add(naprawa);
-        if (biezaca) {
-            biezaceNaprawy.add(naprawa);
+    }
+    public void addBiezacaNaprawa(Naprawa naprawa) {
+        if (naprawa == null) {
+            throw new IllegalArgumentException("Naprawa nie może być null");
         }
+        if (!wszystkieNaprawy.contains(naprawa)) {
+            throw new IllegalStateException("Naprawa musi najpierw zostać dodana do wszystkich napraw");
+        }
+        biezaceNaprawy.add(naprawa);
     }
 
     public void removeNaprawa(Naprawa naprawa) {
@@ -70,7 +76,7 @@ public class Mechanik {
     }
 
     public Set<Naprawa> getWszystkieNaprawy() {
-        return wszystkieNaprawy;
+        return new HashSet<>(wszystkieNaprawy);
     }
 
     public Set<Naprawa> getBiezaceNaprawy() {
