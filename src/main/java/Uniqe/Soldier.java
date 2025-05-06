@@ -10,7 +10,7 @@ public class Soldier {
     private String stopien;
     private String jednostka;
     private String dataUrodzenia;
-    private String NumerLegitymacji;
+    private final String NumerLegitymacji;
 
     public Soldier(String imie, String nazwisko, String stopien, String jednostka, String dataUrodzenia, String NumerLegitymacji) {
         setImie(imie);
@@ -18,7 +18,9 @@ public class Soldier {
         setStopien(stopien);
         setJednostka(jednostka);
         setDataUrodzenia(dataUrodzenia);
-        setNumerLegitymacji(NumerLegitymacji);
+        checkForNullValue(NumerLegitymacji, "Numer legitymacji cannot be null");
+        checkStringForEmptyAndBlank(NumerLegitymacji, "Numer legitymacji cannot be empty or blank");
+        this.NumerLegitymacji = NumerLegitymacji;
         if (soldiers.contains(this)) {
             throw new IllegalArgumentException("Soldier already exists");
         }
@@ -69,11 +71,6 @@ public class Soldier {
     }
     public String getNumerLegitymacji() {
         return NumerLegitymacji;
-    }
-    public void setNumerLegitymacji(String NumerLegitymacji) {
-        checkForNullValue(NumerLegitymacji, "Numer legitymacji cannot be null");
-        checkStringForEmptyAndBlank(NumerLegitymacji, "Numer legitymacji cannot be empty or blank");
-        this.NumerLegitymacji = NumerLegitymacji;
     }
     private void checkStringForEmptyAndBlank(String string, String message) {
         if (string.isEmpty() || string.isBlank()) {

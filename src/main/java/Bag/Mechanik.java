@@ -1,24 +1,17 @@
 package Bag;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class Mechanik {
     private String specialization;
     private String name;
     private String surname;
-    private Set<Employment> employments = new HashSet<>();
+    private List<Employment> employments = new ArrayList<>();
 
     public Mechanik(String specialization, String name, String surname) {
         setSpecialization(specialization);
         setName(name);
         setSurname(surname);
-    }
-
-    public Set<Employment> getEmployments() {
-        return Collections.unmodifiableSet(employments);
     }
 
     public Employment addEmployment(Employment employment) {
@@ -34,10 +27,7 @@ public class Mechanik {
 
     public void removeEmployment(Employment employment) {
         employments.remove(employment);
-    }
-
-    public String getSpecialization() {
-        return specialization;
+        employment.removeEmployment();
     }
 
     public void setSpecialization(String specialization) {
@@ -46,24 +36,32 @@ public class Mechanik {
         this.specialization = specialization;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         checkForNullValue(name, "Name cannot be null");
         checkStringForEmptyAndBlank(name, "Name cannot be empty or blank");
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
     public void setSurname(String surname) {
         checkForNullValue(surname, "Surname cannot be null");
         checkStringForEmptyAndBlank(surname, "Surname cannot be empty or blank");
         this.surname = surname;
+    }
+
+    public List<Employment> getEmployments() {
+        return Collections.unmodifiableList(employments);
+    }
+
+    public String getSpecialization() {
+        return specialization;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
     }
 
     private void checkStringForEmptyAndBlank(String string, String message) {

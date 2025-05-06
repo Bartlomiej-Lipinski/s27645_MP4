@@ -99,6 +99,7 @@ public class Employment {
     public void removeEmployment() {
         mechanic.removeEmployment(this);
         shop.removeEmployment(this);
+        employments.remove(this);
     }
 
     @Override

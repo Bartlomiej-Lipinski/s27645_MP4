@@ -9,16 +9,16 @@ public class Main {
         Projekt projekt = new Projekt("Projekt A");
 
         // Create an instance of Mechanik
-        Mechanik mechanik = new Mechanik();
+        Mechanik mechanik = new Mechanik("Jan Kowalski");
 
         // Set the warsztat and projekt
         mechanik.setWarsztat(warsztat);
         System.out.println("Mechanik przypisany do warsztatu: " + mechanik.getWarsztat().getNazwa());
-        System.out.println(warsztat.get);
+        System.out.println(warsztat.getMechanik());
         mechanik.setProjekt(projekt);
 
         // Print the names of warsztat and projekt
-        System.out.println("Warsztat: " + mechanik.getWarsztat().getNazwa());
+//        System.out.println("Warsztat: " + mechanik.getWarsztat().getNazwa());
         System.out.println("Projekt: " + mechanik.getProjekt().getNazwa());
     }
 }

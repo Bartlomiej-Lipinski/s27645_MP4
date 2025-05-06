@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Warsztat {
     private String place;
-    private Set<Employment> employments = new HashSet<>();
+    private List<Employment> employments = new ArrayList<>();
 
     public Warsztat(String place) {
         setPlace(place);
@@ -26,10 +26,11 @@ public class Warsztat {
             throw new IllegalArgumentException("Employment cannot be null");
         }
         employments.remove(employment);
+        employment.removeEmployment();
     }
 
     public void removeCarRepairShop() {
-        Set<Employment> temp = new HashSet<>(employments);
+        List<Employment> temp = new ArrayList<>(employments);
         for (Employment employment : temp) {
             employment.removeEmployment();
         }
@@ -57,6 +58,10 @@ public class Warsztat {
         }
     }
 
+    public List<Employment> getEmployments() {
+        return new ArrayList<>(employments);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -69,15 +74,11 @@ public class Warsztat {
     public int hashCode() {
         return Objects.hash(place);
     }
-
     @Override
     public String toString() {
         return "CarRepairShop{" +
                 "place='" + place + '\'' +
                 ", employments=" + employments +
                 '}';
-    }
-    public Set<Employment> getEmployments() {
-        return employments;
     }
 }
