@@ -3,8 +3,6 @@ package Xor;
 import Utility.ObjectPlus4;
 import Utility.ObjectPlusPlus;
 
-import java.util.ArrayList;
-
 public class Mechanik extends ObjectPlus4 {
     private String imie;
 
@@ -13,12 +11,12 @@ public class Mechanik extends ObjectPlus4 {
         super();
         setImie(imie);
         addXorRole("warsztat");
-        addXorRole("projekt");
+        addXorRole("garage");
     }
 
     public void setWarsztat(Warsztat warsztat) throws Exception {
         if (warsztat == null) {
-            throw new IllegalStateException("Projekt cannot be null");
+            throw new IllegalStateException("Garage cannot be null");
         }
         if (warsztat.anyLink("warszrar")){
             throw new IllegalStateException("Warsztat already has a mechanic");
@@ -26,14 +24,14 @@ public class Mechanik extends ObjectPlus4 {
         addLinkXor("warsztat", "mechanik", warsztat);
     }
 
-    public void setProjekt(Projekt projekt) throws Exception {
-        if (projekt == null) {
-            throw new IllegalArgumentException("Projekt cannot be null");
+    public void setGarage(Garage garage) throws Exception {
+        if (garage == null) {
+            throw new IllegalArgumentException("Garage cannot be null");
         }
-        if (projekt.anyLink("mechanik")){
-            throw new IllegalStateException("Projekt already has a mechanic");
+        if (garage.anyLink("mechanik")){
+            throw new IllegalStateException("Garage already has a mechanic");
         }
-        addLinkXor("projekt", "mechanik", projekt);
+        addLinkXor("garage", "mechanik", garage);
     }
 
     public String getImie() {
@@ -48,10 +46,10 @@ public class Mechanik extends ObjectPlus4 {
     public void getConnections() throws Exception {
         if (anyLink("warsztat")) {
             showLinks("warsztat",System.out);
-        } else if(anyLink("projekt")) {
-            showLinks("projekt",System.out);
+        } else if(anyLink("garage")) {
+            showLinks("garage",System.out);
         } else {
-            System.out.println("Nie pwiązany do żadnego warsztatu ani projektu");
+            System.out.println("Nie pwiązany do żadnego warsztatu ani Garage");
         }
     }
     public void remove() throws Exception {
@@ -60,9 +58,9 @@ public class Mechanik extends ObjectPlus4 {
                 removeLinkXor("warsztat", "mechanik",warsztat);
             }
         }
-        if (anyLink("projekt")) {
-            for (ObjectPlusPlus projekt : getLinks("projekt")) {
-                removeLinkXor("projekt", "mechanik",projekt);
+        if (anyLink("garage")) {
+            for (ObjectPlusPlus garage : getLinks("garage")) {
+                removeLinkXor("garage", "mechanik",garage);
             }
         }
         removeFromExtent(this);
@@ -73,9 +71,9 @@ public class Mechanik extends ObjectPlus4 {
                 removeLinkXor("warsztat", "mechanik", warsztat);
             }
         }
-        if (anyLink("projekt")) {
-            for (ObjectPlusPlus projekt : getLinks("projekt")) {
-                removeLinkXor("projekt", "mechanik", projekt);
+        if (anyLink("garage")) {
+            for (ObjectPlusPlus garage : getLinks("garage")) {
+                removeLinkXor("garage", "mechanik", garage);
             }
         }
 

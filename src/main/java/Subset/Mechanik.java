@@ -73,7 +73,7 @@ public class Mechanik extends ObjectPlus4 {
         if (naprawa == null) {
             throw new IllegalArgumentException("Naprawa nie może być null");
         }
-        if (!isLink("bieżąceNaprawy",  naprawa)) {
+        if (isLink("bieżąceNaprawy",  naprawa)) {
             throw new IllegalArgumentException("remove from Currentrepair first");
         }
         removeLink("naprawa", "mechanik", naprawa);

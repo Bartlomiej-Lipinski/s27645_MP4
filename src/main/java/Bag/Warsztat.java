@@ -25,8 +25,10 @@ public class Warsztat {
         if (employment == null) {
             throw new IllegalArgumentException("Employment cannot be null");
         }
-        employments.remove(employment);
-        employment.removeEmployment();
+        if (employments.contains(employment)){
+            employments.remove(employment);
+            employment.removeEmployment();
+        }
     }
 
     public void removeCarRepairShop() {
@@ -78,7 +80,7 @@ public class Warsztat {
     public String toString() {
         return "CarRepairShop{" +
                 "place='" + place + '\'' +
-                ", employments=" + employments +
+                ", employments=" + employments.size() +
                 '}';
     }
 }

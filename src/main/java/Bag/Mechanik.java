@@ -26,8 +26,13 @@ public class Mechanik {
     }
 
     public void removeEmployment(Employment employment) {
-        employments.remove(employment);
-        employment.removeEmployment();
+        if (employment == null) {
+            throw new IllegalArgumentException("Employment cannot be null");
+        }
+        if (employments.contains(employment)) {
+            employments.remove(employment);
+            employment.removeEmployment();
+        }
     }
 
     public void setSpecialization(String specialization) {

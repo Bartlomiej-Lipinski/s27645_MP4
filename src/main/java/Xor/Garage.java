@@ -2,10 +2,10 @@ package Xor;
 
 import Utility.ObjectPlusPlus;
 
-public class Projekt extends ObjectPlusPlus {
+public class Garage extends ObjectPlusPlus {
     private String nazwa;
 
-    public Projekt(String nazwa) {
+    public Garage(String nazwa) {
         super();
         this.nazwa = nazwa;
     }
