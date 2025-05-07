@@ -51,4 +51,16 @@ public abstract class ObjectPlus4 extends ObjectPlusPlus {
         }
         return false;
     }
+    public void removeLinkXor(String roleName, String reverseRoleName, ObjectPlusPlus
+            targetObject) throws Exception {
+        if(rolesXOR.contains(roleName)) {
+            // The currently removing role is XOR'ed
+            // Check if there is a link for XOR'ed roles
+            if(!isXorLink()) {
+                throw new Exception("There is no link for a XOR roles!");
+            }
+        }
+        // Remove the link
+        super.removeLink(roleName, reverseRoleName, targetObject);
+    }
 }

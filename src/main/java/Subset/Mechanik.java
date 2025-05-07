@@ -1,16 +1,10 @@
 package Subset;
-
 import Utility.ObjectPlus4;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class Mechanik extends ObjectPlus4 {
     private String imie;
     private String nazwisko;
     private String specjalizacja;
-    private Set<Naprawa> wszystkieNaprawy = new HashSet<>();
-    private Set<Naprawa> biezaceNaprawy = new HashSet<>();
 
     public Mechanik(String imie, String nazwisko, String specjalizacja) {
         super();
@@ -62,13 +56,6 @@ public class Mechanik extends ObjectPlus4 {
     }
 
     public void addNaprawa(Naprawa naprawa) {
-        if (naprawa == null) {
-            throw new IllegalArgumentException("Naprawa nie może być null");
-        }
-        if (wszystkieNaprawy.contains(naprawa)) {
-            throw new IllegalStateException("Naprawa już istnieje");
-        }
-        wszystkieNaprawy.add(naprawa);
         addLink("naprawa", "mechanik", naprawa);
     }
 
@@ -76,28 +63,30 @@ public class Mechanik extends ObjectPlus4 {
         if (naprawa == null) {
             throw new IllegalArgumentException("Naprawa nie może być null");
         }
-
-        if (!wszystkieNaprawy.contains(naprawa)) {
-            throw new IllegalStateException("Naprawa musi najpierw zostać dodana do wszystkich napraw");
+        if (!isLink("naprawa",  naprawa)) {
+            throw new IllegalArgumentException("add repair first");
         }
         addLink_subset("bieżąceNaprawy","mechanik","naprawa",naprawa);
-        biezaceNaprawy.add(naprawa);
     }
 
     public void removeNaprawa(Naprawa naprawa) {
         if (naprawa == null) {
             throw new IllegalArgumentException("Naprawa nie może być null");
         }
-        wszystkieNaprawy.remove(naprawa);
-        biezaceNaprawy.remove(naprawa);
+        if (!isLink("bieżąceNaprawy",  naprawa)) {
+            throw new IllegalArgumentException("remove from Currentrepair first");
+        }
+        removeLink("naprawa", "mechanik", naprawa);
     }
-    public void removeCurrentNaprawa(Naprawa naprawa) {
+    public void removeBiezacaNaprawa(Naprawa naprawa) {
         if (naprawa == null) {
             throw new IllegalArgumentException("Naprawa nie może być null");
         }
-        if (isLink("bieżąceNaprawy",  naprawa)) {
-            throw new IllegalArgumentException("remove current repair first");
+        if (!isLink("bieżąceNaprawy",  naprawa)) {
+            throw new IllegalArgumentException("not a current repair");
         }
+        removeLink("bieżąceNaprawy", "mechanik", naprawa);
+
     }
 
     public void getWszystkieNaprawy() throws Exception {

@@ -57,16 +57,28 @@ public class Mechanik extends ObjectPlus4 {
     public void remove() throws Exception {
         if (anyLink("warsztat")) {
             for (ObjectPlusPlus warsztat : getLinks("warsztat")) {
-                removeFromExtent(warsztat);
+                removeLinkXor("warsztat", "mechanik",warsztat);
             }
         }
         if (anyLink("projekt")) {
             for (ObjectPlusPlus projekt : getLinks("projekt")) {
-                removeFromExtent(projekt);
+                removeLinkXor("projekt", "mechanik",projekt);
             }
         }
         removeFromExtent(this);
     }
+    public void removeConnections() throws Exception {
+        if (anyLink("warsztat")) {
+            for (ObjectPlusPlus warsztat : getLinks("warsztat")) {
+                removeLinkXor("warsztat", "mechanik", warsztat);
+            }
+        }
+        if (anyLink("projekt")) {
+            for (ObjectPlusPlus projekt : getLinks("projekt")) {
+                removeLinkXor("projekt", "mechanik", projekt);
+            }
+        }
 
+    }
 
 }

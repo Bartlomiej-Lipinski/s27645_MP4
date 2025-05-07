@@ -139,4 +139,21 @@ public abstract class ObjectPlusPlus extends ObjectPlus implements Serializable 
         Map<Object, ObjectPlusPlus> objectLinks = links.get(roleName);
         return objectLinks != null && !objectLinks.isEmpty();
     }
+
+    protected void removeLink(String roleName, String reverseRoleName, ObjectPlusPlus targetObject) {
+        Map<Object, ObjectPlusPlus> objectLinks;
+        if (!links.containsKey(roleName)) {
+            // No links
+            return;
+        }
+
+        objectLinks = links.get(roleName);
+        if (objectLinks.containsValue(targetObject)) {
+            // Remove the link
+            objectLinks.remove(targetObject);
+
+            // Remove the reverse connection
+            targetObject.removeLink(reverseRoleName, roleName, this);
+        }
+    }
 }

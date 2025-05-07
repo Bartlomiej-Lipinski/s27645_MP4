@@ -19,10 +19,11 @@ public class Main {
 //        System.out.println("Warsztat: " + mechanik.getWarsztat().getNazwa());
         mechanik.getConnections();
         Mechanik.getExtent(Mechanik.class).forEach(System.out::println);
-        mechanik.remove();
+        mechanik.removeConnections();
         System.out.println("Usunięto mechanika z warsztatu");
         mechanik.getConnections();
         Mechanik.getExtent(Mechanik.class).forEach(System.out::println);
-
+        mechanik.setProjekt(projekt);
+        mechanik.getConnections();
     }
 }
