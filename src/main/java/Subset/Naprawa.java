@@ -1,15 +1,14 @@
 package Subset;
-import Utility.ObjectPlusPlus;
+import Utility.ObjectPlus4;
 
-import java.util.HashSet;
-import java.util.Set;
 
-public class Naprawa extends ObjectPlusPlus {
+public class Naprawa extends ObjectPlus4 {
     private int numerNaprawy;
     private String opis;
     private double koszt;
 
     public Naprawa(int numerNaprawy, String opis, double koszt) {
+        super();
         this.numerNaprawy = numerNaprawy;
         this.opis = opis;
         this.koszt = koszt;

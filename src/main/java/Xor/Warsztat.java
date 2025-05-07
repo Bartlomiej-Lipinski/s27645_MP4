@@ -6,6 +6,7 @@ public class Warsztat extends ObjectPlusPlus {
     private String nazwa;
 
     public Warsztat(String nazwa) {
+        super();
         this.nazwa = nazwa;
     }
 
@@ -16,4 +17,5 @@ public class Warsztat extends ObjectPlusPlus {
     public void setNazwa(String nazwa) {
         this.nazwa = nazwa;
     }
+
 }

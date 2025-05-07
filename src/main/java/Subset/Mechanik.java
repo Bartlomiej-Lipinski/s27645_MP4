@@ -1,11 +1,11 @@
 package Subset;
 
-import Utility.ObjectPlusPlus;
+import Utility.ObjectPlus4;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class Mechanik extends ObjectPlusPlus {
+public class Mechanik extends ObjectPlus4 {
     private String imie;
     private String nazwisko;
     private String specjalizacja;
@@ -13,6 +13,7 @@ public class Mechanik extends ObjectPlusPlus {
     private Set<Naprawa> biezaceNaprawy = new HashSet<>();
 
     public Mechanik(String imie, String nazwisko, String specjalizacja) {
+        super();
         setImie(imie);
         setNazwisko(nazwisko);
         setSpecjalizacja(specjalizacja);

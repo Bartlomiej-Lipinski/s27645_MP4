@@ -3,7 +3,7 @@ import Xor.Projekt;
 import Xor.Warsztat;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // Create instances of Warsztat and Projekt
         Warsztat warsztat = new Warsztat("Warsztat A");
         Projekt projekt = new Projekt("Projekt A");
@@ -12,13 +12,17 @@ public class Main {
         Mechanik mechanik = new Mechanik("Jan Kowalski");
 
         // Set the warsztat and projekt
+//        mechanik.setProjekt(projekt);
         mechanik.setWarsztat(warsztat);
-        System.out.println("Mechanik przypisany do warsztatu: " + mechanik.getWarsztat().getNazwa());
-        System.out.println(warsztat.getMechanik());
-        mechanik.setProjekt(projekt);
 
         // Print the names of warsztat and projekt
 //        System.out.println("Warsztat: " + mechanik.getWarsztat().getNazwa());
-        System.out.println("Projekt: " + mechanik.getProjekt().getNazwa());
+        mechanik.getConnections();
+        Mechanik.getExtent(Mechanik.class).forEach(System.out::println);
+        mechanik.remove();
+        System.out.println("Usunięto mechanika z warsztatu");
+        mechanik.getConnections();
+        Mechanik.getExtent(Mechanik.class).forEach(System.out::println);
+
     }
 }
